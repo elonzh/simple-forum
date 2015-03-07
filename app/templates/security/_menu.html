@@ -1,0 +1,21 @@
+{% if security.registerable or security.recoverable or security.confirmable %}
+    <h3>账户管理</h3>
+    <ul>
+        <li><a href="
+
+                {{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">登陆</a>
+        </li>
+        {% if security.registerable %}
+            <li><a href="
+
+                    {{ url_for_security('register') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">注册</a><br/>
+            </li>
+        {% endif %}
+        {% if security.recoverable %}
+            <li><a href="{{ url_for_security('forgot_password') }}">忘记密码</a><br/></li>
+        {% endif %}
+        {% if security.confirmable %}
+            <li><a href="{{ url_for_security('send_confirmation') }}">确认账号</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

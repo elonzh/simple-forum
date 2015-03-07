@@ -1,0 +1,5 @@
+您的密码已成功修改
+{% if security.recoverable %}
+如果您的密码没有修改成功，点击链接进行重置。
+{{ url_for_security('forgot_password', _external=True) }}
+{% endif %}

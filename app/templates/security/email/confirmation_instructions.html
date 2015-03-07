@@ -1,0 +1,8 @@
+{% extends "security/email/_base.html" %}
+{% block title %}
+    您需要确认您的账号
+{% endblock %}
+{% block body %}
+    <p>点击下方的链接确认您的账号：</p>
+    <p><a href="{{ confirmation_link }}">确认账号</a></p>
+{% endblock %}

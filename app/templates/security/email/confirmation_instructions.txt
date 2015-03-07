@@ -1,0 +1,3 @@
+点击下方的链接确认您的账号：
+
+{{ confirmation_link }}

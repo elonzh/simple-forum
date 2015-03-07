@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+{% block content %}
+    {% if result == None %}
+        <!-- Registration Form - START -->
+        <div class="container" id="container1">
+            <div class="row centered-form">
+                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">欢迎使用四六级查询功能</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" method="post">
+                                {{ cet_form.hidden_tag() }}
+                                {% from "_macro.html" import render_field_errors %}
+                                <div class="form-group">
+                                    {{ cet_form.zkzh(class="form-control input-sm",placeholder="请输入15位准考证号") }}
+                                    {{ render_field_errors(cet_form.zkzh) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ cet_form.xm(class="form-control input-sm",placeholder="姓名超过3个字，可只输入前3个") }}
+                                    {{ render_field_errors(cet_form.xm) }}
+                                </div>
+                                {% include "include/flash.html" %}
+                                <input type="submit" value="好运一点就到~" class="btn btn-info btn-block">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Registration Form - END -->
+    {% else %}
+        <div>
+            <div>
+                {% if result != {} %}
+                    <table class="table table-bordered">
+                        {% for key in result %}
+                            <tr>
+                                <td><label>{{ key }}</label></td>
+                                <td>{{ result[key] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <h2 class="h2" style="color: #ff0000;">未能查到相关信息，请核对姓名及准考证号后继续查询</h2>
+                {% endif %}
+                <blockquote>
+                    注：姓名中的生僻字可能无法正常显示，以成绩单为准。<br>
+                    <a href="http://www.chsi.com.cn/jyzx/cet/201202/20120215/280994521.html" target="_blank">CET分数解释</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="http://www.chsi.com.cn/jyzx/cet/201202/20120215/280994521.html"
+                       target="_blank">证书/成绩单修改</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/cet" class="btn btn-success">继续查询</a>
+                </blockquote>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block plugin %}
+{% endblock %}

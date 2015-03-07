@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+
+{% block access_control %}
+    {% if g.user.is_authenticated() %}
+        <div class="dropdown pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <img class="img-rounded" src="{{ g.user.avatar(20) }}"/>
+                {% if g.user.nickname %}
+                    {{ g.user.nickname }}
+                {% else %}
+                    无名氏
+                {% endif %}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ url_for("index") }}">返回网站首页</a> </li>
+                <li><a href="{{ url_for_security("logout") }}">注销</a></li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

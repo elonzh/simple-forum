@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+    <div class="container" id="container1">
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">登陆</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% from "security/_macros.html" import render_field_with_errors, render_field %}
+                        <form role="form" action="{{ url_for_security('login') }}" method="POST" name="send_login_form">
+                            {{ send_login_form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ render_field_with_errors(send_login_form.email,class="form-control input-sm",placeholder="邮箱") }}
+                            </div>
+                            {% include "security/_messages.html" %}
+                            {{ render_field(send_login_form.submit,value="提交",class="btn btn-info btn-block") }}
+                        </form>
+                        {% include "security/_menu.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block plugin %}
+{% endblock %}

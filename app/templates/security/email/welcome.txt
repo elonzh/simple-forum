@@ -1,0 +1,7 @@
+欢迎！ {{ user.email }}!
+
+{% if security.confirmable %}
+您可以通过下方的链接确认您的账号：
+
+{{ confirmation_link }}
+{% endif %}

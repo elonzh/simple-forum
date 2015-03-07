@@ -1,0 +1,8 @@
+{% extends "security/email/_base.html" %}
+{% block title %}
+    欢迎！ {{ user.email }}!
+{% endblock %}
+{% block body %}
+    <p>您可以通过以下链接进行登录：</p>
+    <p><a href="{{ login_link }}">立即登陆</a></p>
+{% endblock %}

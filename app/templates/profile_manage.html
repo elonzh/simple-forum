@@ -1,0 +1,40 @@
+<!-- extend base layout -->
+{% extends "_base.html" %}
+{% block content %}
+    <br>
+    <form class="form form-horizontal" role="form" name="profile" action="{{ url_for("profile_manage") }}"
+          method="post" enctype="multipart/form-data">
+        {% from "_macro.html" import render_field_errors %}
+        {{ profile_form.hidden_tag() }}
+        <div class="form-group">
+            <label>修改昵称</label>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ profile_form.nickname(class="form-control") }}
+                    {{ render_field_errors(profile_form.nickname) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>修改头像</label>
+            <br>
+            <img class="img-rounded" src="{{ g.user.avatar(80) }}"/>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ profile_form.avatar(class="form-control") }}
+                    {{ render_field_errors(profile_form.avatar) }}
+                </div>
+            </div>
+        </div>
+        {% include "include/flash.html" %}
+        <div class="row">
+            <button class="btn btn-sm btn-info" type="submit">保存</button>
+        </div>
+    </form>
+    <br>
+    <label>修改密码</label>
+    <br>
+    <a href="{{ url_for_security('change_password') }}">点此修改密码</a>
+{% endblock %}

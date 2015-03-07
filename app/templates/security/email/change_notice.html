@@ -1,0 +1,9 @@
+{% extends "security/email/_base.html" %}
+{% block title %}
+    您的密码已成功修改
+{% endblock %}
+{% block body %}
+    您的密码已成功修改
+    {% if security.recoverable %}
+    <p>如果您的密码没有修改成功，<a href="{{ url_for_security('forgot_password', _external=True) }}">点击这里进行重置</a>。</p>
+{% endblock %}

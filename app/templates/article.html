@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {#    代码高亮支持#}
+    <link href="{{ url_for("static", filename="js/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css") }}" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="{{ url_for("static", filename="js/ueditor/third-party/SyntaxHighlighter/shCore.js") }}"></script>
+    <script>SyntaxHighlighter.all();</script>
+{% endblock %}
+{% block content %}
+    {% include "include/post.html" %}
+    {% include "include/comment.html" %}
+{% endblock %}

@@ -1,0 +1,73 @@
+<!-- extend base layout -->
+{% extends "_base.html" %}
+{% block content %}
+    {% include "include/flash.html" %}
+    <div class="row">
+        <span class="label label-info"><a href="?type=全部" style="color: #ffffff">全部</a></span>
+        <span class="label label-info"><a href="?type=极客秀" style="color: #ffffff">极客秀</a></span>
+        <span class="label label-info"><a href="?type=问与答" style="color: #ffffff">问与答</a></span>
+        <span class="label label-info"><a href="?type=技能交换" style="color: #ffffff">技能交换</a></span>
+        <span class="label label-info"><a href="?type=分享" style="color: #ffffff">分享</a></span>
+        <span class="label label-info"><a href="?type=创意" style="color: #ffffff">创意</a></span>
+        <span class="label label-info"><a href="?type=活动" style="color: #ffffff">活动</a></span>
+        <span class="label label-info"><a href="?type=失物招领" style="color: #ffffff">失物招领</a></span>
+        <span class="label label-info"><a href="?type=吐槽" style="color: #ffffff">吐槽</a></span>
+        <span class="label label-info"><a href="?type=兼职招聘" style="color: #ffffff">兼职招聘</a></span>
+        <span class="label label-info"><a href="?type=交易" style="color: #ffffff">交易</a></span>
+        <span class="label label-info"><a href="?type=其他" style="color: #ffffff">其他</a></span>
+    </div>
+    <br>
+    {% if posts.items != [] %}
+        {% for post in posts.items %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel panel-title">
+                        <h4><a href="/article/{{ post.id }}">{{ post.title }}</a></h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {% if post.author %}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        作者：{% if post.author.nickname %} {{ post.author.nickname }} {% else %} 无名氏 {% endif %}
+                    {% endif %}
+                    {% if post.type %}
+                        <span class="glyphicon glyphicon-bookmark"></span>
+                        类型：{{ post.type.name }}
+                    {% endif %}
+                    {% if post.timestamp %}
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        发布日期：{{ momentjs(post.timestamp).calendar() }}
+                    {% endif %}
+                    {% if post.link %}
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                        文章链接：{{ post.link }}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>啥也没有~ 赶紧去发布消息吧，大懒虫(′・∀・『)</p>
+        </div>
+    {% endif %}
+    <ul class="pager">
+        {% if posts.has_prev %}
+            <li class="previous"><a href="?type={{ request.args.get("type") }}&p={{ posts.prev_num }}">上一页</a></li>
+        {% else %}
+            <li class="previous disabled"><a href="#">上一页</a></li>
+        {% endif %}
+        {% if posts.has_next %}
+            <li class="next"><a href="?type={{ request.args.get("type") }}&p={{ posts.next_num }}">下一页</a></li>
+        {% else %}
+            <li class="next disabled"><a href="#">下一页</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block plugin %}
+    {% include "include/type_description.html" %}
+    {% include "include/hot_comment.html" %}
+    {% include "include/latest_comment.html" %}
+{% endblock %}
+
