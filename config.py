@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-__author__ = "erliang"
-
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -19,7 +17,7 @@ if "SERVER_SOFTWARE" in os.environ:
 else:
     SQLALCHEMY_DATABASE_URI = "mysql://{0:s}:{1:s}@{2:s}:{3:s}/{4:s}".format("root", "mysqladmin", "localhost", "3306",
                                                                              "test")
-SQLALCHEMY_POOL_RECYCLE = 5 # 修复SAE MySQL gone away
+SQLALCHEMY_POOL_RECYCLE = 5  # 修复SAE MySQL gone away
 SQLALCHEMY_RECORD_QUERIES = True
 DATABASE_QUERY_TIMEOUT = 0.5
 # 分页设置
@@ -32,12 +30,12 @@ MAIL_SERVER = "smtpcloud.sohu.com"
 MAIL_PORT = 25
 # MAIL_USE_TLS = False
 # MAIL_USE_SSL = True
-MAIL_DEFAULT_SENDER = "hfut@erliang.me"
-MAIL_USERNAME = "hfut_erliang"
-MAIL_PASSWORD = "HsNqgwkFUAH2cXkz"
+MAIL_DEFAULT_SENDER = "*******"
+MAIL_USERNAME = "*******"
+MAIL_PASSWORD = "*******"
 
 # administrator list
-ADMINS = ["eviler_liang@foxmail.com"]
+ADMINS = ["*******"]
 
 CACHE_TYPE = "memcached"
 CACHE_KEY = 'view/%s'
@@ -48,7 +46,7 @@ CACHE_DEFAULT_TIMEOUT = 86400
 # Core
 SECURITY_PASSWORD_HASH = "sha512_crypt"  # bcrypt(依赖pybcrypt), sha512_crypt, or pbkdf2_sha512.
 SECURITY_PASSWORD_SALT = "82qyg2#$Wd}"
-SECURITY_EMAIL_SENDER = "hfut@erliang.me"
+SECURITY_EMAIL_SENDER = "*******"
 # URLs and Views
 # SECURITY_POST_REGISTER_VIEW = "/register"
 SECURITY_POST_CONFIRM_VIEW = "/profile_manage"
@@ -67,4 +65,3 @@ SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE = "密码重置成功"
 SECURITY_EMAIL_SUBJECT_PASSWORD_RESET = "重置您的密码"
 SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE = "密码修改成功"
 SECURITY_EMAIL_SUBJECT_CONFIRM = "确认您的邮箱"
-

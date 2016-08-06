@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-__author__ = "erliang"
-
 from flask.ext.wtf import Form
 from flask.ext.wtf.file import FileField, FileAllowed
 from wtforms import StringField, SelectField
@@ -50,7 +48,8 @@ class ProfileForm(Form):
     nickname = StringField("昵称", validators=[Optional(),
                                              Length(min=4, max=10, message="昵称为4到10个字符"),
                                              # TODO:正则表达式中文匹配存在问题
-                                             Regexp("[0-9a-zA-Z\u4e00-\u9fa5\-_]{4,10}", message="昵称仅包含中文，字母，数字或\"-\"\"_\"")])
+                                             Regexp("[0-9a-zA-Z\u4e00-\u9fa5\-_]{4,10}",
+                                                    message="昵称仅包含中文，字母，数字或\"-\"\"_\"")])
 
 
 class CetForm(Form):

@@ -1,12 +1,8 @@
 # -*- coding:utf-8 -*-
-__author__ = "erliang"
-
 from hashlib import md5
-
 from flask.ext.security import UserMixin, RoleMixin
 
 from app import db
-
 
 roles_users = db.Table('roles_users',
                        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
@@ -23,6 +19,7 @@ class Role(db.Model, RoleMixin):
 
     def __unicode__(self):
         return self.name
+
 
 class User(db.Model, UserMixin):
     # Flask-Security 的 UserMixin 继承自 Flask-Login 并额外添加了 is_active(), get_auth_token(), has_role() 三个方法
@@ -46,9 +43,10 @@ class User(db.Model, UserMixin):
     def avatar(self, size=50):
         if self.avatar_key:
             return "http://7vzpsx.com1.z0.glb.clouddn.com/%s?imageView2/1/w/%s/interlace/1" % (
-            self.avatar_key, str(size))
+                self.avatar_key, str(size))
         # 使用Gravatar多说国内镜像加速, d 为默认头像类型 http://en.gravatar.com/site/implement/images/
-        return "".join(["http://gravatar.duoshuo.com/avatar/", md5(self.email).hexdigest(), "?d=identicon&s=", str(size)])
+        return "".join(
+            ["http://gravatar.duoshuo.com/avatar/", md5(self.email).hexdigest(), "?d=identicon&s=", str(size)])
 
     def __repr__(self):
         return "<User %r>" % (self.nickname)

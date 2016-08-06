@@ -1,9 +1,4 @@
-#!flask/bin/python
 # -*- coding: utf8 -*-
-
-# !flask/bin/python
-# -*- coding: utf8 -*-
-
 from coverage import coverage
 
 cov = coverage(branch=True, omit=["flask/*", "tests.py"])

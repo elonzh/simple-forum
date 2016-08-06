@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-__author__ = "erliang"
-
 import re
 import qiniu
 import requests
